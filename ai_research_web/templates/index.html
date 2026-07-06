@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quanta &mdash; AI Research Assistant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark" aria-hidden="true">
+      <svg viewBox="0 0 32 32" width="22" height="22">
+        <circle cx="16" cy="16" r="3.2" fill="currentColor"/>
+        <circle cx="16" cy="16" r="13" fill="none" stroke="currentColor" stroke-width="1.6" opacity="0.55"/>
+        <circle cx="16" cy="16" r="13" fill="none" stroke="currentColor" stroke-width="1.6"
+                stroke-dasharray="14 67" transform="rotate(-40 16 16)"/>
+      </svg>
+    </span>
+    <div>
+      <h1>Quanta</h1>
+      <p class="brand-sub">AI Research Assistant &middot; powered by Google Gemini 2.5 Flash</p>
+    </div>
+  </div>
+
+  <button id="theme-toggle" class="theme-toggle" aria-label="Toggle light and dark theme">
+    <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><g stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="12" y1="1.5" x2="12" y2="4.5"/><line x1="12" y1="19.5" x2="12" y2="22.5"/><line x1="1.5" y1="12" x2="4.5" y2="12"/><line x1="19.5" y1="12" x2="22.5" y2="12"/><line x1="4.2" y1="4.2" x2="6.3" y2="6.3"/><line x1="17.7" y1="17.7" x2="19.8" y2="19.8"/><line x1="4.2" y1="19.8" x2="6.3" y2="17.7"/><line x1="17.7" y1="6.3" x2="19.8" y2="4.2"/></g></svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 1 0 10.5 10.5z" fill="currentColor"/></svg>
+  </button>
+</header>
+
+<main class="stage">
+
+  <div class="topics" id="topics">
+    <button class="chip" data-topic="Artificial Intelligence">Artificial Intelligence</button>
+    <button class="chip" data-topic="Machine Learning">Machine Learning</button>
+    <button class="chip" data-topic="Blockchain">Blockchain</button>
+    <button class="chip" data-topic="Cybersecurity">Cybersecurity</button>
+    <button class="chip" data-topic="Cloud Computing">Cloud Computing</button>
+    <button class="chip" data-topic="Data Science">Data Science</button>
+  </div>
+
+  <div class="console">
+    <div class="spine" id="spine" aria-hidden="true"></div>
+
+    <section class="panel panel-input">
+      <p class="panel-label"><span class="dot"></span>Your Question</p>
+      <textarea id="query-input" placeholder="Ask anything related to research&hellip; e.g. &ldquo;How does federated learning preserve privacy?&rdquo;" maxlength="2000"></textarea>
+      <div class="panel-footer">
+        <span id="char-count" class="char-count">0 / 2000</span>
+        <button id="ask-btn" class="ask-btn">
+          <span class="ask-btn-label">Ask Quanta</span>
+          <span class="ask-btn-spinner" aria-hidden="true"></span>
+        </button>
+      </div>
+    </section>
+
+    <section class="panel panel-output">
+      <p class="panel-label"><span class="dot dot-cyan"></span>Research Result</p>
+      <div id="result" class="result">
+        <div class="result-empty">
+          <svg viewBox="0 0 48 48" width="40" height="40"><circle cx="24" cy="24" r="3.4" fill="currentColor"/><circle cx="24" cy="24" r="19" fill="none" stroke="currentColor" stroke-width="1.6" opacity="0.4"/><circle cx="24" cy="24" r="19" fill="none" stroke="currentColor" stroke-width="1.6" stroke-dasharray="20 100" transform="rotate(-30 24 24)"/></svg>
+          <p class="result-empty-title">Ready when you are</p>
+          <p class="result-empty-sub">Enter a research question and select Ask Quanta.</p>
+        </div>
+      </div>
+      <div class="result-actions" id="result-actions" hidden>
+        <button id="copy-btn" class="action-btn">Copy Answer</button>
+        <button id="pdf-btn" class="action-btn action-btn-accent">Download PDF</button>
+      </div>
+    </section>
+  </div>
+
+  <p class="footnote">Quanta can make mistakes. Verify anything important against a primary source.</p>
+</main>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
